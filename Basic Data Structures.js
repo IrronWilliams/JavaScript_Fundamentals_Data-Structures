@@ -158,5 +158,62 @@ function copyMachine(arr, num) {
     return newArr; //returns a new array made up of num copies of arr.
   }
   // change code here to test different cases:
-  console.log(copyMachine([true, false, true], 7));
+  console.log(copyMachine([true, false, true], 7))
+
+/*The spread operator allows you the ability to combine arrays, or to insert all the elements of one array into 
+another, at any index
+*/
+let thisArray2 = ['sage', 'rosemary', 'parsley', 'thyme']
+
+let thatArray2 = ['basil', 'cilantro', ...thisArray2, 'coriander']
+// thatArray2 now equals ['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']
+
+/*
+indexOf() allows you to quickly and easily check for the presence of an element on an array. indexOf() takes an 
+element as a parameter, and when called, it returns the position, or index, of that element, 
+or -1 if the element does not exist on the array.
+*/
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears']
+fruits.indexOf('dates') // returns -1
+fruits.indexOf('oranges') // returns 2
+fruits.indexOf('pears') // returns 1, the first index at which the element exists
+
+//returns true if the passed element exists on the array, and false if it does not.
+function quickCheck(arr, elem) {
+    if (arr.indexOf(elem) == -1) {
+      return false  
+    } else {
+      return true
+    }
+  }
+  // change code here to test different cases:
+  console.log(quickCheck(['squash', 'onions', 'shallots'], 'shallots'))
+
+/*Iterate Through All an Array's Items Using For Loops.  Using a for loop, this function iterates through and 
+accesses each element of the array, and subjects it to a simple test (if statement) Program easily and 
+programmatically determines which data items are greater than 10, and returned a new array containing those items.*/
+  function greaterThanTen(arr) {
+    let newArr = []
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > 10) {
+        newArr.push(arr[i])
+      }
+    }
+    return newArr
+  } 
+  console.log(greaterThanTen([2, 12, 8, 14, 80, 0, 1]))
+  // returns [12, 14, 80]
   
+//return a filtered version of the passed array such that any array nested within arr containing elem has been removed.
+function filteredArray(arr, elem) {
+    let newArr = []
+
+     for (let i = 0; i < arr.length; i++) {
+      if (arr[i].indexOf(elem) == -1) {  //Checks every parameter for the element and if NOT there continues the code
+        newArr.push(arr[i]) //Inserts the element of the array in the new filtered array
+      }
+    }
+    return newArr
+  }
+  // change code here to test different cases:
+  console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 13))
