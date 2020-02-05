@@ -217,3 +217,50 @@ function filteredArray(arr, elem) {
   }
   // change code here to test different cases:
   console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 13))
+
+  /* Arrays can contain an infinite depth of arrays that can contain other arrays, each with their own arbitrary levels of depth.
+   In this way, an array can very quickly become a very complex data structure, known as a multi-dimensional, or nested array. 
+   */
+  let nestedArray = [ // top, or first level - the outer most array
+    ['deep'], // an array within an array, 2 levels of depth
+    [
+      ['deeper'], ['deeper'] // 2 arrays nested 3 levels deep
+    ],
+    [
+      [
+        ['deepest'], ['deepest'] // 2 arrays nested 4 levels deep
+      ],
+      [
+        [
+          ['deepest-est?'] // an array nested 5 levels deep
+        ]
+      ]
+    ]
+  ]
+ 
+  // access the deepest levels of an array this complex with bracket notation:
+console.log(nestedArray[2][1][0][0][0])
+// logs: deepest-est?
+
+//resetting to
+nestedArray[2][1][0][0][0] = 'deeper still'
+console.log(nestedArray[2][1][0][0][0])
+// now logs: deeper still
+
+/*
+myNestedArray has combination of strings, numbers, and booleans for data elements.  myNestedArray has five levels of depth.
+The outer-most array is level 1.  On the third level, the string 'deep' is included.  On the fourth level, the string 'deeper' is incl
+and on the fifth level, the string 'deepest' is included.  Logic for nested arrays as follows: 
+
+let threeLevelArray = ["first level",
+  
+  ["Two levels deep", ["Three levels deep"]]
+]
+ */
+let myNestedArray = [ //[] 1 level deep (outer most array )
+  ['unshift', false, 1, 2, 3, 'complex', 'nested'], //[ [] ] 2 levels deep 
+  ['loop', 'shift', 6, 7, 1000, 'method'], //[ [] ]
+  ['concat', false, true, 'spread', 'array',['deep']], //[  [ [] ]  ] //3 levels deep 
+  ['mutate', 1327.98, 'splice', 'slice', 'push',[['deeper']]], //[ [ [  []   ]    ]   ] 4 levels deep
+  ['iterate', 1.3849, 7, '8.4876', 'arbitrary', 'depth',[[['deepest']]]] // [[[[[]]]]] 5 levels deep
+ ]
