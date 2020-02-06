@@ -259,8 +259,264 @@ let threeLevelArray = ["first level",
  */
 let myNestedArray = [ //[] 1 level deep (outer most array )
   ['unshift', false, 1, 2, 3, 'complex', 'nested'], //[ [] ] 2 levels deep 
-  ['loop', 'shift', 6, 7, 1000, 'method'], //[ [] ]
+  ['loop', 'shift', 6, 7, 1000, 'method'], //[ [] ] 2 levels deep
   ['concat', false, true, 'spread', 'array',['deep']], //[  [ [] ]  ] //3 levels deep 
   ['mutate', 1327.98, 'splice', 'slice', 'push',[['deeper']]], //[ [ [  []   ]    ]   ] 4 levels deep
   ['iterate', 1.3849, 7, '8.4876', 'arbitrary', 'depth',[[['deepest']]]] // [[[[[]]]]] 5 levels deep
  ]
+
+/*
+At their most basic, objects are just collections of key-value pairs, or simply pieces of data mapped to unique identifiers that are 
+called properties or keys. The code defines an object called FCC_User that has four properties, each of which map to a specific value.
+In short, they are key-value stores which provide a flexible, intuitive way to structure data, and, they provide very fast lookup time.
+
+Using dot notation, I can access the number of followers FCC_User has.  
+let userData = FCC_User.followers
+
+Alternatively, I can also access the property with bracket notation.  followers is enclosed in quotes. This is because the brackets 
+actually allow us to pass a variable in to be evaluated as a property name. 
+let userData = FCC_User['followers']
+*/
+
+let FCC_User = {
+  username: 'awesome_coder',
+  followers: 572,
+  points: 1741,
+  completedProjects: 15
+}
+
+//Can also add new key-value pairs to object. Adding entries for bananas, grapes and strawberries. Dot notation does not work when adding multiple entries?
+let foods = {
+  apples: 25,
+  oranges: 32,
+  plums: 28
+}
+foods['bananas'] = 13
+foods['grapes'] = 35
+foods['strawberries'] = 27
+console.log(foods)
+
+/*
+Object properties can be nested to an arbitrary depth, and their values can be any type of data supported by JavaScript, including arrays 
+and even other objects.  nestedObject has three unique keys: id, whose value is a number, date whose value is a string, and data, whose 
+value is an object which has yet another object nested within it. While structures can quickly become complex, we can still use the same 
+notations to access the information we need.
+*/
+
+let nestedObject = {
+  id: 28802695164,
+  date: 'December 31, 2016',
+  data: {
+    totalUsers: 99,
+    online: 80,
+    onlineStatus: {
+      active: 67,
+      away: 13
+    }
+  }
+}
+
+//Using dot notation to change the value of the online key to 45.
+let userActivity = {
+  id: 23894201352,
+  date: 'January 1, 2017',
+  data: {
+    totalUsers: 51,
+    online: 42
+  }
+}
+userActivity.data.online = 45
+console.log(userActivity);
+
+//checkInventory receives a scanned item as an argument. Program returns the current value of the scannedItem key in the foods2 object.
+let foods2 = {
+  apples: 25,
+  oranges: 32,
+  plums: 28,
+  bananas: 13,
+  grapes: 35,
+  strawberries: 27
+}
+function checkInventory(scannedItem) {
+  return foods2[scannedItem]
+}
+// change code below this line to test different cases:
+console.log(checkInventory("plums"))
+
+/*Can use the delete keyword to remove a key-value pair from an object. Using delete to remove the oranges, plums, and strawberries 
+keys from the foods3 object.
+*/
+let foods3 = {
+  apples: 25,
+  oranges: 32,
+  plums: 28,
+  bananas: 13,
+  grapes: 35,
+  strawberries: 27
+}
+delete foods3.oranges
+delete foods3.plums
+delete foods3.strawberries
+console.log(foods3);
+
+/*
+To check if an object has a specific property, you can use the hasOwnProperty() method and the 'in' keyword. 
+If we have an object users with a property of Alan, we could check for its presence in either of the following ways:
+
+users.hasOwnProperty('Alan');
+'Alan' in users;
+// both return true
+*/
+
+//Returns true only if the users object contains all four names, Alan, Jeff, Sarah, and Ryan, as keys, and returns false otherwise
+let users = {
+  Alan: {
+    age: 27,
+    online: true
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: true
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+}
+
+function isEveryoneHere(obj) { //receives users as argument and referred to as 'obj'
+ if (
+     obj.hasOwnProperty('Alan') &&
+     obj.hasOwnProperty('Jeff') &&
+     obj.hasOwnProperty('Sarah') &&
+     obj.hasOwnProperty('Ryan')
+ ) {
+   return true
+ }else {
+   return false
+ }
+}
+console.log(isEveryoneHere(users)) // calling function and passing the users object as an argument.
+
+/* To Iterate Through the Keys of an Object, use a for...in Statement
+
+Statement defines a variable user, and the variable resets during each iteration to each of the object's keys as the statement loops
+through the object, resulting in each user's name being printed to the console. 
+
+NOTE: Objects do not maintain an ordering to stored keys like arrays do; thus a key's position on an object, or the relative order 
+in which it appears, is irrelevant when referencing or accessing that key.
+
+for (let user in users) {
+  console.log(user);
+}
+
+logs:
+Alan
+Jeff
+Sarah
+Ryan
+
+*/
+
+/*
+countOnline accepts one argument (a users object). Using a for...in statement within this function to loop through the users object 
+passed into the function and return the number of users whose online property is set to true. 
+Each user will have an online property with either a true or false value.
+
+dot-notation will cause errors with this program. [square-bracket] notation must be used to call a variable property name.
+*/
+
+let users2= {
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Ryan: {
+    age: 19,
+    online: false
+  }
+}
+function countOnline(obj) { //receives user2 as argument and refers to as 'obj'
+  let result = 0;
+  for (let user in obj) {
+    if (obj[user].online === true) { //dot notation will not work. []notation must be used to call a variable property name 
+      result++ //increasing results by 1 for each iteration of the loop 
+    }
+  }
+  return result
+}
+console.log(countOnline(users2)) //calling function and passing the users2 object as an argument.
+
+/*
+Generate an Array of All Object Keys with Object.keys()
+
+Can also generate an array which contains all the keys stored in an object using the Object.keys() method and passing in an object as 
+the argument. This will return an array with strings representing each property in the object. 
+There will be no specific order to the entries in the array.
+*/
+
+//getArrayOfUsers function returns an array containing all the properties in the object it receives as an argument.
+let users3 = { 
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Smitty: {
+    age: 19,
+    online: true
+  }
+};
+
+function getArrayOfUsers(obj) {
+  return Object.keys(obj)
+}
+console.log(getArrayOfUsers(users3))
+
+/*
+The user4 object contains three keys. The data key contains five keys, one of which contains an array of friends. 
+Function takes a user object and adds the name of the friend argument to the array stored in user.data.friends and returns that array.
+*/
+let user4 = {
+  name: 'Kenneth',
+  age: 28,
+  data: {
+    username: 'kennethCodesAllDay',
+    joinDate: 'March 26, 2016',
+    organization: 'freeCodeCamp',
+    friends: [
+      'Sam',
+      'Kira',
+      'Tomo'
+    ],
+    location: {
+      city: 'San Francisco',
+      state: 'CA',
+      country: 'USA'
+    }
+  }
+}
+function addFriend(userObj, friend) {
+userObj.data.friends.push(friend)
+return userObj.data.friends
+}
+console.log(addFriend(user4, 'Stone'));
